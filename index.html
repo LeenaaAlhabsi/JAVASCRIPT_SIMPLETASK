@@ -8,10 +8,13 @@
 <body>
     <button onclick="alerting()" >Click Me</button>
     <p id="demo"></p>
+
+    <input type="number" id="numberInput" placeholder="Enter a number" />
+    <button onclick="checkNumber()">Check Number</button>
 </body>
 <script>
     let count = 0;
-    function alerting(){
+    const alerting = () =>{
         let myname = "Leena";
         count++;  
         for (let i = 0; i < count; i++) {
@@ -28,5 +31,19 @@
         //     alert("Hello");
         // }
     } 
+    const isEvenOrOdd = (number) =>{
+        if (typeof number !== 'number' || isNaN(number)) {
+            return 'Input is not a valid number';
+        }
+        return number % 2 === 0 ? 'Even' : 'Odd';
+    }
+    
+    // Function that gets the number from the input field and alerts the result
+    const checkNumber = () =>{
+        const input = document.getElementById("numberInput").value;
+        const number = Number(input);
+        const result = isEvenOrOdd(number);
+        alert(`${number} is ${result}`);
+    }
 </script> 
 </html>
