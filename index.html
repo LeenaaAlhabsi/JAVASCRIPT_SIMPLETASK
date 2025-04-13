@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="alerting()" >Click Me</button>
+    <p id="demo"></p>
+</body>
+<script>
+    let count = 0;
+    function alerting(){
+        let myname = "Leena";
+        count++;  
+        for (let i = 0; i < count; i++) {
+            // printing the value of count and myname in the console
+            console.log("count number = " + count + " " + myname + " " + i);
+            // printing the value of count and myname in the document
+            // document.getElementById("demo").innerHTML += "<h2> count number " + count + " " + myname + "</h2>";
+        }
+        // if (count == 1) {
+        //     alert("Hello first time");} 
+        // else if (count == 2) {
+        //     alert("Hello second time");} 
+        // else if (count >= 3) {
+        //     alert("Hello");
+        // }
+    } 
+</script> 
+</html>
