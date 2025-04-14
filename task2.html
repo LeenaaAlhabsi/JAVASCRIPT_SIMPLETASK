@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+   :root {
+      --primary-color: #6c5ce7;       /* soft purple */
+      --primary-hover: #5a4cb3;
+      --accent-color: #00b894;        /* mint green */
+      --bg-color: #f1f2f6;            /* light gray */
+      --card-bg: #ffffff;
+      --card-border: #dfe6e9;
+      --shadow-color: rgba(0, 0, 0, 0.08);
+      --font-color: #2d3436;
+    }
+    /* Global Styling */
+    body {
+      background: linear-gradient(135deg, var(--bg-color), #dfe6e9);
+      font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      color: var(--font-color);
+    }
+    /* Card Styling */
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 25px 30px;
+      margin: 20px auto;
+      max-width: 600px;
+      box-shadow: 0 8px 16px var(--shadow-color);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px var(--shadow-color);
+    }
+    .card h1 {
+      font-size: 26px;
+      margin-bottom: 10px;
+      color: var(--primary-color);
+    }
+    .card h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: var(--accent-color);
+    }
+    .card p {
+      background-color: #f8f9fa;
+      border: 1px solid var(--card-border);
+      border-radius: 6px;
+      padding: 12px;
+      font-size: 16px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      margin-top: 12px;
+    }
+    /* Input Styling */
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+      margin-bottom: 15px;
+      background-color: #ffffff;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    input[type="text"]:focus {
+      border-color: var(--primary-color);
+      outline: none;
+      box-shadow: 0 0 6px rgba(108, 92, 231, 0.3);
+    }
+    /* Button Styling */
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      background-color: var(--primary-color);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    button:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+    <div class="card" id="reverseArray">
+        <h1>Reverse an Array</h1>
+        <h3>Enter the elements of the array separated by commas:</h3>
+        <br>
+        <input type="text" id="arrayInput" placeholder="Example: 1,2,3,4,5">
+        <button id="reverseButton" onclick="displayResult1()">Reverse Array</button>
+        <p id="result"></p>
+    </div>
+    <div class="card" id="FilterPositiveNumbers">
+        <h1>Filter Positive Numbers</h1>
+        <h3>Enter the elements of the array separated by commas:</h3>
+        <br>
+        <input type="text" id="arrayInput2" placeholder="Example: -1,2,-3,4,5">
+        <button id="filterButton" onclick="displayResult2()">Filter Positive Numbers</button>
+        <p id="result2"></p>
+    </div>
+    <div class="card" id="SumofArrayElements">
+        <h1>Sum of Array Elements</h1>
+        <h3>Enter the elements of the array separated by commas:</h3>
+        <br>
+        <input type="text" id="arrayInput3" placeholder="Example: 1,2,3,4,5">
+        <button id="sumButton" onclick="displayResult3()">Sum of Array Elements</button>
+        <p id="result3"></p>
+    </div>
+    <div class="card" id="CountWordOccurrences">
+        <h1>Count Word Occurrences</h1>
+        <h3>Enter the text:</h3>
+        <br>
+        <input type="text" id="textInput" placeholder="Example: Hello world, hello everyone">
+        <button id="countButton" onclick="displayResult4()">Count Word Occurrences</button>
+        <p id="result4"></p>
+    </div>
+</body>
+<script>
+    //function to Reverse an Array
+    const reverseArray = (arr) => {
+        let reversedArr = [];
+        for (let i = arr.length - 1; i >= 0; i--) {
+            reversedArr.push(arr[i]);
+        }
+        return reversedArr;
+    }
+
+   //function to read input and display result
+    const displayResult1 = () => {
+        const input = document.getElementById('arrayInput').value;
+        const array = input.split(',').map(Number);
+        const reversedArray = reverseArray(array);
+        document.getElementById('result').innerText = `Reversed Array: ${reversedArray.join(', ')}`;
+    }
+
+    //function to Filter Positive Numbers
+    const filterPositiveNumbers = (arr) => {
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] < 0) {
+                arr.splice(i, 1);
+                i--;
+            }
+        }
+    }
+
+    const displayResult2 = () => {
+        const input = document.getElementById('arrayInput2').value;
+        const array = input.split(',').map(Number);
+        filterPositiveNumbers(array);
+        document.getElementById('result2').innerText = `Filtered Positive Numbers: ${array.join(', ')}`;
+    }
+
+    const sumOfArrayElements = (arr) => {
+        let sum = 0;
+        for (let i = 0; i < arr.length; i++) {
+            sum += arr[i];
+        }
+        return sum;
+    }
+
+    const displayResult3 = () => {
+        const input = document.getElementById('arrayInput3').value;
+        const array = input.split(',').map(Number);
+        const sum = sumOfArrayElements(array);
+        document.getElementById('result3').innerText = `Sum of Array Elements: ${sum}`;
+    }
+
+    const countWordOccurrences = (text) => {
+        const words = text.split(/\s+/);
+        const wordCount = {};
+        for (const word of words) {
+            const lowerWord = word.toLowerCase();
+            if (wordCount[lowerWord]) {
+                wordCount[lowerWord]++;
+            } else {
+                wordCount[lowerWord] = 1;
+            }
+        }
+        return wordCount;
+    }
+    const displayResult4 = () => {
+        const input = document.getElementById('textInput').value;
+        const wordCount = countWordOccurrences(input);
+        let resultText = 'Word Occurrences:\n';
+        for (const word in wordCount) {
+            resultText += `${word}: ${wordCount[word]}\n`;
+        }
+        document.getElementById('result4').innerText = resultText;
+    }
+
+</script>
+</html>
