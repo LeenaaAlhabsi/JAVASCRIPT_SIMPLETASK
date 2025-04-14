@@ -7,22 +7,29 @@
 </head>
 <body>
     <input type="number" id="numberInput" placeholder="Enter a number" />
-    <button onclick="checkNumber()">Check Number</button>
+    <button onclick="displayResults()">Check Number</button>
 </body>
 <script>
-
-const isEvenOrOdd = (number) => {
+//function that checks if a number is even or odd
+const checkNumber = (number) => {
+    // Check if the input is a number and not NaN
     if (typeof number !== 'number' || isNaN(number)) {
         return 'Input is not a valid number';
     }
-    return number % 2 === 0 ? 'Even' : 'Odd';
+    if (number % 2 === 0){
+        return 'Even';}
+    else
+       { return 'Odd';
+    }
+   
 }
 
 // Function that gets the number from the input field and alerts the result
-const checkNumber = () =>{
+const displayResults = () =>{
+    // Get the value from the input field and convert it to a number
     const input = document.getElementById("numberInput").value;
     const number = Number(input);
-    const result = isEvenOrOdd(number);
+    const result = checkNumber(number);
     alert(`${number} is ${result}`);
 }
 </script>
