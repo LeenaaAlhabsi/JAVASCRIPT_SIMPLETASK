@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" id="numberInput" placeholder="Enter a number" />
+    <button onclick="displayResults()">Check Number</button>
+</body>
+<script>
+//function that calculate and return the sum of numbers from 1 to n
+const SumOfNumber = (number) => {
+    let sum = 0;
+    //loop to calculate the sum of numbers from 1 to n
+    for (let i = 1; i <= number; i++) {
+        sum += i;
+    }
+    return sum;
+}
+// Function that gets the number from the input field and alerts the result
+const displayResults = () =>{
+    // Get the value from the input field and convert it to a number
+    const input = document.getElementById("numberInput").value;
+    const number = Number(input);
+    const result = SumOfNumber(number);
+    alert(`${number} is ${result}`);
+}
+</script>
+</html>
