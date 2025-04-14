@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="stringInput" placeholder="Enter a string:" />
+    <button onclick="displayResults()">Count Vowels</button>
+</body>
+<script>
+    const vowels = ['a', 'e', 'i', 'o', 'u','A', 'E', 'I', 'O', 'U'];
+    // Function that counts the number of vowels in a string
+    const countvouls = (inputString) => {
+        // Check if the input is a string
+        if (typeof inputString !== 'string') {
+            return 'Input is not a valid string';
+        }
+        // Initialize a counter for vowels
+        let count = 0;
+        for (let i = 0; i < inputString.length; i++) {
+            // Check if the character is a vowel
+            if (vowels.includes(inputString[i])) {
+                count++;
+            }
+        }
+        return `The number of vowels in "${inputString}" is ${count}`;
+    }
+
+    // Function that gets the string from the input field and alerts the result
+    const displayResults = () => {
+        // Get the value from the input field
+        const input = document.getElementById("stringInput").value;
+        const result = countvouls(input);
+        alert(result);
+    }
+</script>
+</html>
