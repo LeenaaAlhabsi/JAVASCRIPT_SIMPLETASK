@@ -5,25 +5,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    /* Add any optional styling here */
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       padding: 20px;
+      background: #f0f4f8;
+      color: #333;
+      line-height: 1.6;
     }
-    input[type="text"] {
-      padding: 8px;
-      margin-right: 10px;
-      font-size: 16px;
+    h1 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 5px;
     }
+    input[type="text"],
     input[type="password"] {
-      padding: 8px;
-      margin-right: 10px;
+      padding: 10px;
+      margin: 8px 0;
       font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: calc(100% - 24px);
     }
     button {
-      padding: 8px 12px;
+      padding: 10px 20px;
       font-size: 16px;
       cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      background-color: #3498db;
+      color: #fff;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      margin: 8px 0;
+    }
+    button:hover {
+      background-color: #2980b9;
+      transform: translateY(-2px);
+    }
+    /* Container styling for each section */
+    .container,
+    div {
+      background: #ffffff;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    /* Specific element styles */
+    #result, #divisionResult, #apiResult, #demo,
+    #array, #nestedResult, #nestedResult2, #nestedResult3 {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #ecf0f1;
+      border: 1px solid #bdc3c7;
+      border-radius: 4px;
+      word-wrap: break-word;
     }
   </style>
 </head>
@@ -48,7 +84,7 @@
     </div>
     <div>
         <h1>simulate API call(Async)</h1>
-        <p>Waiting for API call...</p>
+        <p></p>
         <p id="apiResult"></p>
     </div>
     <div>
@@ -60,8 +96,13 @@
         <p id="nestedResult2"></p>
         <p id="nestedResult3"></p>
     </div>
-
-
+    <div>
+        <h1>Division Operation/Callback Error Handling</h1>
+        <input type="text" id="divA" placeholder="Enter first number (a)">
+        <input type="text" id="divB" placeholder="Enter second number (b)">
+        <button onclick="calcDivide()">Divide</button>
+        <p id="divisionResult"></p>
+    </div>
     <script>
         //-----------------------------------------------------------------------------------------------------------
         function greating(name, callback) {
@@ -88,7 +129,7 @@
             const operation = parts[2].trim();
 
             if (operation === '+') {
-                calculate(a, b, (a, b) => { document.getElementById("result").innerHTML = "The sum is: " + (a + b);});
+                calculate(a, b, (a, b) => {document.getElementById("result").innerHTML = "The sum is: " + (a + b);});
             } else if (operation === '-') {
                 calculate(a, b, (a, b) => {document.getElementById("result").innerHTML = "The difference is: " + (a - b);});
             } else if (operation === '*') {
@@ -116,11 +157,19 @@
             });}
         //-----------------------------------------------------------------------------------------------------------
         function simulateAPICall(callback) {
+            document.getElementById("apiResult").innerHTML = "Waiting for API call...";
             setTimeout(() => {
-                callback();
+                // Using mock data here:
+                let mockData = {
+                    id: 1,
+                    message: "This is mock API data",
+                    timestamp: new Date().toLocaleString()
+                };
+                console.log("API data received:", mockData);
+                callback(mockData);
             }, 3000); 
-        } 
-        simulateAPICall((data) => { document.getElementById("apiResult").innerHTML = "API data received.";});
+        }
+        simulateAPICall((data) => { document.getElementById("apiResult").innerHTML = `API data received: ${JSON.stringify(data)}`; });
         //-----------------------------------------------------------------------------------------------------------
         //nested callback function using 3 functions 
         function login(callback) {
@@ -153,7 +202,26 @@
             }, 3000);
         }
         //-----------------------------------------------------------------------------------------------------------
-
+        function divide(a, b, successCallback, errorCallback) {
+            if (b === 0) {
+            errorCallback("Division by zero is not allowed.");
+            } else {
+            successCallback(a / b);
+            }
+        }
+        function calcDivide() {
+            let a = parseFloat(document.getElementById('divA').value);
+            let b = parseFloat(document.getElementById('divB').value);
+            // Call the divide function with success and error callbacks.
+            divide(a, b,
+            function(result) {
+                document.getElementById('divisionResult').innerText = "Division result: " + result;
+            },
+            function(message) {
+                document.getElementById('divisionResult').innerText = "Error: " + message;
+            }
+            );
+        }
     </script>
 
 </body>
