@@ -41,6 +41,11 @@
         <button onclick="processingarry()">result</button>
         <p id="array"></p>
     </div>
+    <div>
+        <h1>simulate API call(Async)</h1>
+        <p>Waiting for API call...</p>
+        <p id="apiResult"></p>
+    </div>
 
     <script>
         //-----------------------------------------------------------------------------------------------------------
@@ -94,6 +99,13 @@
                 //display the result in the document
                 document.getElementById("array").innerHTML =  `The doubled array is: [${arr.join(', ')}] `;
             });}
+        //-----------------------------------------------------------------------------------------------------------
+        function simulateAPICall(callback) {
+            setTimeout(() => {
+                callback();
+            }, 3000); 
+        } 
+        simulateAPICall((data) => { document.getElementById("apiResult").innerHTML = "API data received.";});
     </script>
 
 </body>
