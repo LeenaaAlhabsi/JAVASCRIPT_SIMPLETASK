@@ -15,6 +15,11 @@
       margin-right: 10px;
       font-size: 16px;
     }
+    input[type="password"] {
+      padding: 8px;
+      margin-right: 10px;
+      font-size: 16px;
+    }
     button {
       padding: 8px 12px;
       font-size: 16px;
@@ -46,6 +51,16 @@
         <p>Waiting for API call...</p>
         <p id="apiResult"></p>
     </div>
+    <div>
+        <h1>Nested Callback Example</h1>
+        <input type="text" id="Nested" placeholder="Enter username:">
+        <input type="password" id="password" placeholder="Enter password:">
+        <button onclick="login(() => { fetchUser(() => { fetchSetting(); }); })">login</button>
+        <p id="nestedResult"></p>
+        <p id="nestedResult2"></p>
+        <p id="nestedResult3"></p>
+    </div>
+
 
     <script>
         //-----------------------------------------------------------------------------------------------------------
@@ -106,6 +121,39 @@
             }, 3000); 
         } 
         simulateAPICall((data) => { document.getElementById("apiResult").innerHTML = "API data received.";});
+        //-----------------------------------------------------------------------------------------------------------
+        //nested callback function using 3 functions 
+        function login(callback) {
+            document.getElementById("nestedResult").innerHTML = "Waiting for login...";
+            setTimeout(() => {
+                const username = document.getElementById("Nested").value;
+                const password = document.getElementById("password").value;
+                console.log("Username: " + username + ", Password: " + password);
+                console.log("Login successful.");
+                document.getElementById("nestedResult").innerHTML = "Login successful.";
+                callback();
+            }, 3000); 
+        }
+        function fetchUser(callback) {
+            document.getElementById("nestedResult2").innerHTML = "waiting for user fetch...";
+            setTimeout(() => {
+                const username = document.getElementById("Nested").value;
+                console.log("Fetching user data for: " + username);
+                console.log("User data fetched.");
+                document.getElementById("nestedResult2").innerHTML = "User data fetched.";
+                callback();
+            }, 3000); 
+        }
+        function fetchSetting() {
+            document.getElementById("nestedResult3").innerHTML = "waiting for settings fetch...";
+            setTimeout(() => {
+                const password = document.getElementById("password").value;
+                console.log("Settings fetched.");
+                document.getElementById("nestedResult3").innerHTML = "Settings fetched.";
+            }, 3000);
+        }
+        //-----------------------------------------------------------------------------------------------------------
+
     </script>
 
 </body>
