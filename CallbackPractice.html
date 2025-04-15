@@ -23,22 +23,58 @@
   </style>
 </head>
 <body>
-  <input type="text" id="nameInput" placeholder="Enter your name">
-  <button onclick="gratingtext()">Click Me</button>
-  <p id="demo"></p>
-  
-  <script>
-    function greating(name, callback) {
-      callback(name);
-    }
+    <div class="container">
+        <h1>greating message</h1>
+        <input type="text" id="nameInput" placeholder="Enter your name">
+        <button onclick="gratingtext()">Click Me</button>
+        <p id="demo"></p>
+    </div>
+    <div>
+        <h1>calculater</h1>
+        <input type="text" id="number" placeholder="Enter a,b,operation(*,/,+, -)">
+        <button onclick="result()">result</button>
+        <p id="result"></p>
+    </div>
     
-    function gratingtext() {
-      let name = document.getElementById("nameInput").value;
-      greating(name, (name) => {
+
+    <script>
+        //-----------------------------------------------------------------------------------------------------------
+        function greating(name, callback) {
+        callback(name);
         console.log("Hello " + name);
-        document.getElementById("demo").innerHTML = "Hello " + name;
-      });
-    }
-  </script>
+        }
+        function gratingtext() {
+        let name = document.getElementById("nameInput").value;
+        greating(name, (name) => {
+            console.log("Hello " + name);
+            document.getElementById("demo").innerHTML = "Hello " + name;
+        });
+        }
+        //-----------------------------------------------------------------------------------------------------------    
+        function calculate(a, b, callback) {
+            callback(a, b);
+        }
+        function result(){
+        const inputNumber = document.getElementById("number").value;
+        const parts = inputNumber.split(',');
+        if (parts.length === 3) {
+            const a = parseFloat(parts[0]);
+            const b = parseFloat(parts[1]);
+            const operation = parts[2].trim();
+
+            if (operation === '+') {
+                calculate(a, b, (a, b) => { document.getElementById("result").innerHTML = "The sum is: " + (a + b);});
+            } else if (operation === '-') {
+                calculate(a, b, (a, b) => {document.getElementById("result").innerHTML = "The difference is: " + (a - b);});
+            } else if (operation === '*') {
+                calculate(a, b, (a, b) => { document.getElementById("result").innerHTML = "The product is: " + (a * b);});
+            } else if (operation === '/') {
+                calculate(a, b, (a, b) => { document.getElementById("result").innerHTML = "The divition is: " + (a / b);});
+            } else {
+                document.getElementById("result").innerText = "Error: Invalid operation";
+            }
+        }}
+    </script>
+
 </body>
 </html>
