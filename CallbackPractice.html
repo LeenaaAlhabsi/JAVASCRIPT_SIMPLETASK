@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px;
+      background: #f0f4f8;
+      color: #333;
+      line-height: 1.6;
+    }
+    h1 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 5px;
+    }
+    input[type="text"],
+    input[type="password"] {
+      padding: 10px;
+      margin: 8px 0;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: calc(100% - 24px);
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      background-color: #3498db;
+      color: #fff;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      margin: 8px 0;
+    }
+    button:hover {
+      background-color: #2980b9;
+      transform: translateY(-2px);
+    }
+    /* Container styling for each section */
+    .container,
+    div {
+      background: #ffffff;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    /* Specific element styles */
+    #result, #divisionResult, #apiResult, #demo,
+    #array, #nestedResult, #nestedResult2, #nestedResult3 {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #ecf0f1;
+      border: 1px solid #bdc3c7;
+      border-radius: 4px;
+      word-wrap: break-word;
+    }
+  </style>
+</head>
+<body>
+    <div class="container">
+        <h1>greating message</h1>
+        <input type="text" id="nameInput" placeholder="Enter your name">
+        <button onclick="gratingtext()">Click Me</button>
+        <p id="demo"></p>
+    </div>
+    <div>
+        <h1>calculater</h1>
+        <input type="text" id="number" placeholder="Enter a,b,operation(*,/,+, -)">
+        <button onclick="result()">result</button>
+        <p id="result"></p>
+    </div>
+    <div>
+        <h1>doubled array elements</h1>
+        <input type="text" id="arr" placeholder="Enter numbers separated by commas">
+        <button onclick="processingarry()">result</button>
+        <p id="array"></p>
+    </div>
+    <div>
+        <h1>simulate API call(Async)</h1>
+        <p></p>
+        <p id="apiResult"></p>
+    </div>
+    <div>
+        <h1>Nested Callback Example</h1>
+        <input type="text" id="Nested" placeholder="Enter username:">
+        <input type="password" id="password" placeholder="Enter password:">
+        <button onclick="login(() => { fetchUser(() => { fetchSetting(); }); })">login</button>
+        <p id="nestedResult"></p>
+        <p id="nestedResult2"></p>
+        <p id="nestedResult3"></p>
+    </div>
+    <div>
+        <h1>Division Operation/Callback Error Handling</h1>
+        <input type="text" id="divA" placeholder="Enter first number (a)">
+        <input type="text" id="divB" placeholder="Enter second number (b)">
+        <button onclick="calcDivide()">Divide</button>
+        <p id="divisionResult"></p>
+    </div>
+    <script>
+        //-----------------------------------------------------------------------------------------------------------
+        function greating(name, callback) {
+        callback(name);
+        console.log("Hello " + name);
+        }
+        function gratingtext() {
+        let name = document.getElementById("nameInput").value;
+        greating(name, (name) => {
+            console.log("Hello " + name);
+            document.getElementById("demo").innerHTML = "Hello " + name;
+        });
+        }
+        //-----------------------------------------------------------------------------------------------------------    
+        function calculate(a, b, callback) {
+            callback(a, b);
+        }
+        function result(){
+        const inputNumber = document.getElementById("number").value;
+        const parts = inputNumber.split(',');
+        if (parts.length === 3) {
+            const a = parseFloat(parts[0]);
+            const b = parseFloat(parts[1]);
+            const operation = parts[2].trim();
+
+            if (operation === '+') {
+                calculate(a, b, (a, b) => {document.getElementById("result").innerHTML = "The sum is: " + (a + b);});
+            } else if (operation === '-') {
+                calculate(a, b, (a, b) => {document.getElementById("result").innerHTML = "The difference is: " + (a - b);});
+            } else if (operation === '*') {
+                calculate(a, b, (a, b) => { document.getElementById("result").innerHTML = "The product is: " + (a * b);});
+            } else if (operation === '/') {
+                calculate(a, b, (a, b) => { document.getElementById("result").innerHTML = "The divition is: " + (a / b);});
+            } else {
+                document.getElementById("result").innerText = "Error: Invalid operation";
+            }
+        }}
+        //-----------------------------------------------------------------------------------------------------------
+        function processArray(arr, callback) {
+            callback(arr);
+        }
+        function processingarry() {
+            const inputArray = document.getElementById("arr").value;
+            const arr = inputArray.split(',').map(Number); // Convert to an array of numbers
+            processArray(arr, (arr) => {
+                //double each element in the array
+                for (let i = 0; i < arr.length; i++) {
+                    arr[i] = arr[i] * 2;
+                }
+                //display the result in the document
+                document.getElementById("array").innerHTML =  `The doubled array is: [${arr.join(', ')}] `;
+            });}
+        //-----------------------------------------------------------------------------------------------------------
+        function simulateAPICall(callback) {
+            document.getElementById("apiResult").innerHTML = "Waiting for API call...";
+            setTimeout(() => {
+                // Using mock data here:
+                let mockData = {
+                    id: 1,
+                    message: "This is mock API data",
+                    timestamp: new Date().toLocaleString()
+                };
+                console.log("API data received:", mockData);
+                callback(mockData);
+            }, 3000); 
+        }
+        simulateAPICall((data) => { document.getElementById("apiResult").innerHTML = `API data received: ${JSON.stringify(data)}`; });
+        //-----------------------------------------------------------------------------------------------------------
+        //nested callback function using 3 functions 
+        function login(callback) {
+            document.getElementById("nestedResult").innerHTML = "Waiting for login...";
+            setTimeout(() => {
+                const username = document.getElementById("Nested").value;
+                const password = document.getElementById("password").value;
+                console.log("Username: " + username + ", Password: " + password);
+                console.log("Login successful.");
+                document.getElementById("nestedResult").innerHTML = "Login successful.";
+                callback();
+            }, 3000); 
+        }
+        function fetchUser(callback) {
+            document.getElementById("nestedResult2").innerHTML = "waiting for user fetch...";
+            setTimeout(() => {
+                const username = document.getElementById("Nested").value;
+                console.log("Fetching user data for: " + username);
+                console.log("User data fetched.");
+                document.getElementById("nestedResult2").innerHTML = "User data fetched.";
+                callback();
+            }, 3000); 
+        }
+        function fetchSetting() {
+            document.getElementById("nestedResult3").innerHTML = "waiting for settings fetch...";
+            setTimeout(() => {
+                const password = document.getElementById("password").value;
+                console.log("Settings fetched.");
+                document.getElementById("nestedResult3").innerHTML = "Settings fetched.";
+            }, 3000);
+        }
+        //-----------------------------------------------------------------------------------------------------------
+        function divide(a, b, successCallback, errorCallback) {
+            if (b === 0) {
+            errorCallback("Division by zero is not allowed.");
+            } else {
+            successCallback(a / b);
+            }
+        }
+        function calcDivide() {
+            let a = parseFloat(document.getElementById('divA').value);
+            let b = parseFloat(document.getElementById('divB').value);
+            // Call the divide function with success and error callbacks.
+            divide(a, b,
+            function(result) {
+                document.getElementById('divisionResult').innerText = "Division result: " + result;
+            },
+            function(message) {
+                document.getElementById('divisionResult').innerText = "Error: " + message;
+            }
+            );
+        }
+    </script>
+
+</body>
+</html>
