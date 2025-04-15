@@ -35,7 +35,12 @@
         <button onclick="result()">result</button>
         <p id="result"></p>
     </div>
-    
+    <div>
+        <h1>doubled array elements</h1>
+        <input type="text" id="arr" placeholder="Enter numbers separated by commas">
+        <button onclick="processingarry()">result</button>
+        <p id="array"></p>
+    </div>
 
     <script>
         //-----------------------------------------------------------------------------------------------------------
@@ -74,6 +79,21 @@
                 document.getElementById("result").innerText = "Error: Invalid operation";
             }
         }}
+        //-----------------------------------------------------------------------------------------------------------
+        function processArray(arr, callback) {
+            callback(arr);
+        }
+        function processingarry() {
+            const inputArray = document.getElementById("arr").value;
+            const arr = inputArray.split(',').map(Number); // Convert to an array of numbers
+            processArray(arr, (arr) => {
+                //double each element in the array
+                for (let i = 0; i < arr.length; i++) {
+                    arr[i] = arr[i] * 2;
+                }
+                //display the result in the document
+                document.getElementById("array").innerHTML =  `The doubled array is: [${arr.join(', ')}] `;
+            });}
     </script>
 
 </body>
