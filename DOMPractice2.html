@@ -96,10 +96,15 @@
         <p>Click the button below to see the magic happen!</p>
         <button id="btn" onclick="changeButtonText()">CLICK ME</button>
     </div>
-    <div id="" class="container">
-        
+    <div id="ToggleParagraphFontSize" class="container">
+        <h3>Toggle Paragraph Font Size</h3>
+        <p id="tex1">This section where you can change the font size of the paragraph<br>Click the button below to change the font size of the paragraph<br>This is a paragraph that will change its font size.</p>
+        <button onclick="changefontsize()">Change Font Size</button>
     </div>
-    <div></div>
+    <div>
+
+    </div>
+    
     <script>
          changepagetitle = () => {
             let title = document.getElementById("titleInput").value;
@@ -113,6 +118,14 @@
         }
         changeButtonText = () => {
             document.getElementById("btn").innerText = "CLICKED!";
+        }
+        changefontsize = () => {
+            let paragraph = document.getElementById("tex1");
+            if (paragraph.style.fontSize === "20px") {
+                paragraph.style.fontSize = "16px";
+            } else {
+                paragraph.style.fontSize = "20px";
+            }
         }
     </script>
 </body>
