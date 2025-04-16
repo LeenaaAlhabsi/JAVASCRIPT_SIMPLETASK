@@ -5,32 +5,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-
+       /* Global Styles */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #e0eafc, #cfdef3);
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    /* Container Styling */
+    .container {
+      background: #ffffff;
+      width: 90%;
+      max-width: 700px;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    h1, h3 {
+      color: #2c3e50;
+      margin-bottom: 15px;
+    }
+    p {
+      font-size: 18px;
+      color: #333;
+      margin: 10px 0;
+    }
+    /* Input Styling */
+    input[type="text"] {
+      padding: 10px;
+      margin: 10px 0 20px;
+      width: 80%;
+      max-width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    /* Button Styling */
+    button {
+      background-color: #5dade2;
+      border: none;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s;
+    }
+    button:hover {
+      background-color: #3498db;
+      transform: translateY(-2px);
+    }
+    /* Image Styling */
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 15px;
+      border: 2px solid #ddd;
+      border-radius: 4px;
+    }
     </style>
 </head>
 <body>
+    <div class="container">
+        <h1>Interactive DOM Manipulation</h1>
+    </div>
     <div id="tatilsection" class="container">
-        <h1>DOM Practice</h1>
-        <section>
-            <h3>Change Page Title</h3>
-            <p>This section where you can change the title of the page</p>
-            <p>Enter the new title and click the button to change</p>
-            <input type="text" id="titleInput" placeholder="Enter new title"> 
-        </section>
-    </div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div id="buttons" class="container">
+        <h3>Change Page Title</h3>
+        <p>This section where you can change the title of the page</p>
+        <p>Enter the new title and click the button to change</p>
+        <input type="text" id="titleInput" placeholder="Enter new title"> 
         <button onclick="changepagetitle()">Change Page Title</button>
-
     </div>
+    <div id="ChangeImageAlt" class="container">
+        <h3>Change Image Alt</h3>
+        <p>This section where you can change the alt text of the image</p>
+        <p>Enter the new alt text and click the button to change</p>
+        <input type="text" id="altInput" placeholder="Enter new alt text">
+        <button onclick="changeImageAlt()">Change Image Alt</button>
+        <p>hover the mouse on the picture to see the change</p>
+        <img src="src/wild.webp" alt="wild life" title="wild life" id="imageToChange">
+    </div>
+    <div></div>
+    <div></div>
+    <div></div>
     <script>
          changepagetitle = () => {
             let title = document.getElementById("titleInput").value;
             document.title = title;
             }
+        changeImageAlt = () => {
+            let altText = document.getElementById("altInput").value;
+            let image = document.getElementById("imageToChange");
+            image.alt = altText;
+            image.title = altText;
+        }
     </script>
 </body>
 </html>
