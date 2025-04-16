@@ -90,8 +90,15 @@
         <p>hover the mouse on the picture to see the change</p>
         <img src="src/wild.webp" alt="wild life" title="wild life" id="imageToChange">
     </div>
-    <div></div>
-    <div></div>
+    <div id="ChangeButtonText" class="container">
+        <h3>Change Button Text</h3>
+        <p>This section where you can change the text of the button</p>
+        <p>Click the button below to see the magic happen!</p>
+        <button id="btn" onclick="changeButtonText()">CLICK ME</button>
+    </div>
+    <div id="" class="container">
+        
+    </div>
     <div></div>
     <script>
          changepagetitle = () => {
@@ -103,6 +110,9 @@
             let image = document.getElementById("imageToChange");
             image.alt = altText;
             image.title = altText;
+        }
+        changeButtonText = () => {
+            document.getElementById("btn").innerText = "CLICKED!";
         }
     </script>
 </body>
