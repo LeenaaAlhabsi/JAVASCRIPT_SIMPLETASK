@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Global Styles */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #e0eafc, #cfdef3);
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    /* Container common styling */
+    .container {
+      background: #ffffff;
+      width: 90%;
+      max-width: 700px;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h1, h3 {
+      color: #2c3e50;
+      margin-bottom: 15px;
+    }
+    p {
+      font-size: 18px;
+      color: #333;
+      margin: 10px 0;
+    }
+    /* Section Styling */
+    section {
+      background: #f7f9fc;
+      border: 1px solid #dcdfe3;
+      border-radius: 6px;
+      padding: 20px;
+      margin-bottom: 15px;
+    }
+    /* Button Styling */
+    button {
+      background-color: #5dade2;
+      border: none;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    button:hover {
+      background-color: #3498db;
+      transform: translateY(-2px);
+    }
+    /* List Styling */
+    ul {
+      list-style-type: disc;
+      padding-left: 20px;
+      text-align: left;
+      margin: 10px 0;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    /* Input Styling */
+    input[type="text"] {
+      padding: 10px;
+      margin: 10px 0;
+      width: 80%;
+      max-width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    </style>
+</head>
+<body>
+    <div id="container" class="container">
+        <h1 id ="heading">Interactive Demo</h1>
+        <section id="ChangeTextContent">
+            <input type="text" id="myInput" placeholder="Type something...">
+            <p>Click the button below to see the magic happen! The the text of a heading will change.</p>
+            <button onclick="changeText()">change the heading</button>
+            <button onclick="changeStyle()">change background-color</button>
+        </section>
+    </div>
+    <div id="container1" class="container">
+        <section id="ShowHideElement">
+            <p>This is a paragraph that can be shown or hidden.</p>
+        </section>
+        <p>Click the button below to show or hide the text.</p>
+        <button onclick="showHideElement()">Show/Hide</button>
+        </section>
+    </div>
+    <div id="container2" class="container">
+        <h3>My List</h3>
+        <ul id="myList">
+          <li>Item 1</li>
+          <li>Item 2</li>
+        </ul>
+        <button onclick="addListItem()">Add New List Item</button>
+      </div>
+
+      <div id="container3" class="container">
+        <h3>Remove Element</h3>
+        <p id="remov">This is an element that can be removed.</p>
+        <button onclick="RemoveElement()">Remove Element</button>
+    <script>
+        const changeText = () => {
+            const inputValue = document.getElementById('myInput').value;
+            document.getElementById('heading').textContent = inputValue;
+        };
+
+        const changeStyle = () => {
+            document.getElementById('container').style.backgroundColor = '#93c6e8'; 
+        };
+
+        const showHideElement = () => {
+            const element = document.getElementById('ShowHideElement');
+            if (element.style.display === 'none') {
+                element.style.display = 'block';
+            } else {
+                element.style.display = 'none';
+            }
+        };
+
+        const addListItem = () => {
+            const newItem = document.createElement('li');
+            newItem.textContent = 'New Item';
+            document.getElementById('myList').appendChild(newItem);
+        };
+
+        const RemoveElement = () => {
+            const element = document.getElementById('remov');
+            element.remove();
+           
+        };
+
+
+
+    </script>
+</body>
+</html>
