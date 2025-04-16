@@ -101,10 +101,17 @@
         <p id="tex1">This section where you can change the font size of the paragraph<br>Click the button below to change the font size of the paragraph<br>This is a paragraph that will change its font size.</p>
         <button onclick="changefontsize()">Change Font Size</button>
     </div>
-    <div>
+    <div id="UpdateaCounteronButtonClick" class="container">
+        <h3>Update a Counter on Button Click</h3>
+        <p>This section where you can update a counter on button click</p>
+        <p>Click the button below to see the counter increase</p>
+        <p id="counter"></p>
+        <button onclick="updateCounter()">Click Me</button>
+    </div>
+    <div id="" class ="container">
 
     </div>
-    
+
     <script>
          changepagetitle = () => {
             let title = document.getElementById("titleInput").value;
@@ -126,6 +133,18 @@
             } else {
                 paragraph.style.fontSize = "20px";
             }
+        }
+
+        let counter = document.getElementById("counter");
+        count= 0;  
+        counter.innerText = "Counter: " + count;
+        updateCounter = () => {
+            count++;  
+        for (let i = 0; i < count; i++) {
+            counter.innerText = "Counter: " + count;  
+        }
+
+            
         }
     </script>
 </body>
