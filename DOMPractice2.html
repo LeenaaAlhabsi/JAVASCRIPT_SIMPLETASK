@@ -108,8 +108,11 @@
         <p id="counter"></p>
         <button onclick="updateCounter()">Click Me</button>
     </div>
-    <div id="" class ="container">
-
+    <div id="DisableButtonAfterClicking" class ="container">
+        <h3>Disable Button After Clicking</h3>
+        <p>This section where you can disable the button after clicking</p>
+        <p>Click the button below to disable it</p>
+        <button id="disableBtn" onclick="disable()">Click Me</button>
     </div>
 
     <script>
@@ -142,10 +145,19 @@
             count++;  
         for (let i = 0; i < count; i++) {
             counter.innerText = "Counter: " + count;  
+        }   
         }
 
-            
+        disable = () => {
+            let btn = document.getElementById("disableBtn");
+            btn.disabled = true;
+            btn.innerText = "DISABLED";
+            btn.style.backgroundColor = "#ccc";
+            btn.style.cursor = "not-allowed";
+            btn.style.color = "#666";
         }
+
+        
     </script>
 </body>
 </html>
