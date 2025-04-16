@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Demo</title>
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, sans-serif;
+      background: linear-gradient(135deg, #e0eafc, #cfdef3);
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    /* Main container styling */
+    .container {
+      background: #ffffff;
+      width: 90%;
+      max-width: 700px;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    h1 {
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+    /* Section styling */
+    section {
+      background: #f7f9fc;
+      border: 1px solid #dcdfe3;
+      border-radius: 6px;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+    p {
+      font-size: 18px;
+      color: #333;
+      margin: 10px 0;
+    }
+    /* Button Styling */
+    button {
+      background-color: #5dade2;
+      border: none;
+      color: #fff;
+      padding: 10px 18px;
+      font-size: 16px;
+      margin: 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+    button:hover {
+      background-color: #3498db;
+      transform: translateY(-2px);
+    }
+    /* Secondary container for adding paragraphs */
+    #container {
+      background: #ffffff;
+      width: 90%;
+      max-width: 700px;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  </style>
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Interactive Demo</h1>
+    
+    
+    <section id="welcomeSection">
+      <p id="demo"></p>
+      <button onclick="welcome()">Show Welcome Message</button>
+      <button onclick="changefontsize()">Change Font Size</button>
+    </section>
+    
+   
+    <section id="toggleSection">
+      <p id="demo2">A</p>
+      <button onclick="update()">Toggle Letter</button>
+      <button onclick="changeColor()">Change Color</button>
+    </section>
+    
+  </div>
+
+  <div id="container" class="container">
+    <h1>Dynamic Paragraphs</h1>
+    <button onclick="updateParagraph()">updateParagraph</button>
+    <button onclick="deletParagraph()">delet Paragraph</button>
+    <p> </p>
+  </div>
+   
+  
+
+
+  <script>
+    function welcome(){
+        console.log("clicked");
+        document.getElementById("demo").innerText = "Welcome to the world of JavaScript!"; 
+    }
+
+    function update(){
+        let paragraphText = document.getElementById("demo2").innerText;
+        if (paragraphText === "A") {
+            document.getElementById("demo2").innerText = "B";
+        } else if (paragraphText === "B") {
+            document.getElementById("demo2").innerText = "A";
+        }
+    }
+
+    function changeColor(){
+        document.getElementById("demo2").style.color = "#3498db";
+    }
+
+    function changefontsize(){
+        document.getElementById("demo").style.fontSize = "24px";
+    }
+
+    function updateParagraph(){
+        let newparagraph = document.createElement("p");
+        newparagraph.innerText = "This is a new paragraph added to the container.";
+        document.getElementById("container").appendChild(newparagraph);
+
+    }
+
+    function deletParagraph(){
+      document.getElementById("container").lastChild.remove();
+  }
+
+
+  </script>
+</b
+ody>
+</html>
