@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       /* Global Styles */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #e0eafc, #cfdef3);
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    /* Container Styling */
+    .container {
+      background: #ffffff;
+      width: 90%;
+      max-width: 700px;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    h1, h3 {
+      color: #2c3e50;
+      margin-bottom: 15px;
+    }
+    p {
+      font-size: 18px;
+      color: #333;
+      margin: 10px 0;
+    }
+    /* Input Styling */
+    input[type="text"] {
+      padding: 10px;
+      margin: 10px 0 20px;
+      width: 80%;
+      max-width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    /* Button Styling */
+    button {
+      background-color: #5dade2;
+      border: none;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s;
+    }
+    button:hover {
+      background-color: #3498db;
+      transform: translateY(-2px);
+    }
+    /* Image Styling */
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 15px;
+      border: 2px solid #ddd;
+      border-radius: 4px;
+    }
+    </style>
+</head>
+<body>
+    <div id="title" class="container">
+        <h1>Interactive DOM Manipulation</h1>
+    </div>
+    <!--task1--> 
+    <div id="titlesection" class="container">
+        <h3>Change Page Title</h3>
+        <p>This section where you can change the title of the page</p>
+        <p>Enter the new title and click the button to change</p>
+        <input type="text" id="titleInput" placeholder="Enter new title"> 
+        <button onclick="changepagetitle()">Change Page Title</button>
+    </div>
+    <!--task2-->
+    <div id="ChangeImageAlt" class="container">
+        <h3>Change Image Alt</h3>
+        <p>This section where you can change the alt text of the image</p>
+        <p>Enter the new alt text and click the button to change</p>
+        <input type="text" id="altInput" placeholder="Enter new alt text">
+        <button onclick="changeImageAlt()">Change Image Alt</button>
+        <p>hover the mouse on the picture to see the change</p>
+        <img src="src/wild.webp" alt="wild life" title="wild life" id="imageToChange">
+    </div>
+    <!--task3-->
+    <div id="ChangeButtonText" class="container">
+        <h3>Change Button Text</h3>
+        <p>This section where you can change the text of the button</p>
+        <p>Click the button below to see the magic happen!</p>
+        <button id="btn" onclick="changeButtonText()">CLICK ME</button>
+    </div>
+    <!--task4-->
+    <div id="ToggleParagraphFontSize" class="container">
+        <h3>Toggle Paragraph Font Size</h3>
+        <p id="tex1">This section where you can change the font size of the paragraph<br>Click the button below to change the font size of the paragraph<br>This is a paragraph that will change its font size.</p>
+        <button onclick="changefontsize()">Change Font Size</button>
+    </div>
+    <!--task5-->
+    <div id="UpdateaCounteronButtonClick" class="container">
+        <h3>Update a Counter on Button Click</h3>
+        <p>This section where you can update a counter on button click</p>
+        <p>Click the button below to see the counter increase</p>
+        <p id="counter"></p>
+        <button onclick="updateCounter()">Click Me</button>
+    </div>
+    <!--task6-->
+    <div id="DisableButtonAfterClicking" class ="container">
+        <h3>Disable Button After Clicking</h3>
+        <p>This section where you can disable the button after clicking</p>
+        <p>Click the button below to disable it</p>
+        <button id="disableBtn" onclick="disable()">Click Me</button>
+    </div>
+    <!--task7-->
+    <div id="InputFieldFocus&BlurEffects" class="container">
+        <h3>Input Field Focus & Blur Effects</h3>
+        <p>This section where you can see the focus and blur effects on the input field</p>
+        <p>Click on the input field to see the focus effect</p>
+        <input type="text" id="focusInput" placeholder="Focus on me!" onfocus="onfocusfunction()">
+    </div>
+    <!--task8-->
+    <div id="AlertInputValue" class="container">
+        <h3>Alert Input Value</h3>
+        <p>This section where you can see the alert input value</p>
+        <p>Click the button below to see the alert</p>
+        <input type="text" id="alertInput" placeholder="Type something...">
+        <button onclick="alertInputValue()">Show Alert</button>
+    </div>
+    <!--task9-->
+    <div id="ChangeBackgroundColor" class="container">
+        <h3>Change Background Color of the Page</h3>
+        <p>This section where you can change the background color of the page</p>
+        <p>Click the button below to change the background color</p>
+        <button onclick="ChangeBackgroundColor()">Change Background Color</button>
+    </div>
+    <!--task10-->
+    <div id="HighlightListItems" class="container">
+        <h3>Highlight List Items</h3>
+       <p>Click on any list item to highlight it</p>
+       <ul id="itemList">
+          <li>List Item 1</li>
+          <li>List Item 2</li>
+          <li>List Item 3</li>
+       </ul>
+    </div>
+    <!--task11-->
+    <div id="ShowHidePassword" class="container">
+        <h3>Show/Hide Password</h3>
+        <p>This section where you can show or hide the password</p>
+        <p>Click the button below to show or hide the password</p>
+        <input type="password" id="passwordInput" placeholder="Enter your password">
+        <button onclick="showHidePassword()">Show/Hide Password</button>
+    </div>
+    <!--task12-->
+    <div id="Pre-fillInputField" class="container">
+        <h3>Pre-fill Input Field</h3>
+        <p>This section where you can pre-fill the input field</p>
+        <p>Click the button below to pre-fill the input field</p>
+        <input type="text" id="prefillInput" placeholder="Pre-fill me!">
+    </div>
+    <!--task13-->
+    <div id="UppercaseConverter" class="container">
+        <h3>Uppercase Converter</h3>
+        <p>This section where you can convert text to uppercase</p>
+        <p>Type something in the input field and click the button to convert it to uppercase</p>
+        <input type="text" id="uppercaseInput" placeholder="Type something...">
+        <p>Output:</p>
+        <p id="uppercaseOutput"></p>
+        <button onclick="convertToUppercase()">Convert to Uppercase</button>
+    </div>
+    <!--task14-->
+    <div id="SimpleColorPicker" class="container">
+        <h3>Simple Color Picker</h3>
+        <p>Select a color and click the button to change the background color of the box</p>
+        <input type="color" id="colorPicker">
+        <button onclick="changeBoxBackground()">Change Box Background</button>
+        <div id="colorBox" style="width: 200px; height: 200px; border: 2px solid #333; margin-top: 10px;"></div>
+    </div>
+    <!--task15-->
+    <div id="ResetPageContent" class="container">
+        <h3>Reset Page Content</h3>
+        <p>This section where you can reset the tatil section</p>
+        <p>Click the button below to reset the page content</p>
+        <button onclick="resetPage()">Reset Page Content</button>
+    </div>
+    <script>
+         changepagetitle = () => {
+            let title = document.getElementById("titleInput").value;
+            document.title = title;
+            }
+        changeImageAlt = () => {
+            let altText = document.getElementById("altInput").value;
+            let image = document.getElementById("imageToChange");
+            image.alt = altText;
+            image.title = altText;
+        }
+        changeButtonText = () => {
+            document.getElementById("btn").innerText = "CLICKED!";
+        }
+        changefontsize = () => {
+            let paragraph = document.getElementById("tex1");
+            if (paragraph.style.fontSize === "20px") {
+                paragraph.style.fontSize = "16px";
+            } else {
+                paragraph.style.fontSize = "20px";
+            }
+        }
+
+        let counter = document.getElementById("counter");
+        count= 0;  
+        counter.innerText = "Counter: " + count;
+        updateCounter = () => {
+            count++;  
+        for (let i = 0; i < count; i++) {
+            counter.innerText = "Counter: " + count;  
+        }   
+        }
+
+        disable = () => {
+            let btn = document.getElementById("disableBtn");
+            btn.disabled = true;
+            btn.innerText = "DISABLED";
+            btn.style.backgroundColor = "#ccc";
+            btn.style.cursor = "not-allowed";
+            btn.style.color = "#666";
+        }
+
+        onfocusfunction = () => {
+            let input= document.getElementById("focusInput");
+            input.style.backgroundColor = "#e0f7fa";
+            input.style.borderColor = "#00796b";
+        }
+
+        alertInputValue = () => {
+            let inputValue = document.getElementById("alertInput").value;
+            alert(inputValue);
+        }
+
+        ChangeBackgroundColor = () => {
+            document.body.style.background = "#e0f7fa";
+        }
+
+
+        const listItems = document.querySelectorAll("#itemList li");
+        listItems.forEach(item => {
+        item.addEventListener("click", function(){
+            // Clear styles from every item first
+            listItems.forEach(li => {
+                li.style.backgroundColor = "";
+                li.style.color = "";
+            });
+            this.style.backgroundColor = "#e0f7fa";
+            this.style.color = "#000";
+        });
+        });
+
+        showHidePassword = () => {
+            let passwordInput = document.getElementById("passwordInput");
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+        let prefillInput = document.getElementById("prefillInput");
+        prefillInput.value = "Automatic Value Set on Load";
+        console.log("Input field pre-filled with default value.");
+        });
+
+        convertToUppercase = () => {
+            let inputText = document.getElementById("uppercaseInput").value;
+            let outputText = inputText.toUpperCase();
+            document.getElementById("uppercaseOutput").innerText = outputText;
+        }
+
+        changeBoxBackground = () => {
+            let colorPicker = document.getElementById("colorPicker");
+            let colorBox = document.getElementById("colorBox");
+            colorBox.style.backgroundColor = colorPicker.value;
+        }
+
+        resetPage = () => {
+             window.location.reload();
+        }
+    </script>
+</body>
+</html>
