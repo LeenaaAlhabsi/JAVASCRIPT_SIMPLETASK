@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Global Styles */
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #eef2f3;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    /* Container styling */
+    .container {
+      background: #fff;
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1, h3 {
+      color: #333;
+      margin-bottom: 12px;
+    }
+    p {
+      color: #555;
+      margin-bottom: 12px;
+    }
+    /* Input & TextArea Styling */
+    input[type="text"],
+    input[type="number"],
+    textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    /* Button Styling */
+    button {
+      background: #007BFF;
+      color: #fff;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    /* List Styling */
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    li {
+      padding: 10px 0;
+      border-bottom: 1px solid #ddd;
+    }
+    li:last-child {
+      border-bottom: none;
+    }
+   </style>
+</head>
+<body>
+    <div id="container" class="container">
+        <h1>JavaScript Fetch API Practice</h1>
+    </div>
+    <div id="ResetPageContent" class="container">
+        <h3>Reset Page Content</h3>
+        <button onclick="resetPage()">Reset Page Content</button>
+    </div>
+    <!--Show Users-->
+    <div class="container">
+        <div id="ShowUsers">
+            <h1>Users</h1>
+            <ul id="userList"></ul>
+        </div>
+        <button id = "loadUser">Load Users</button>
+    </div>
+    <!--Show Posts-->
+    <div class="container">
+        <div id="ShowPosts">
+            <h1>Posts</h1>
+            <ul id="postList"></ul>
+        </div>
+        <button id = "loadPost">Load Posts</button>
+    </div>
+    <!--Add Posts-->
+    <div id="addPostForm" class="container">
+        <h3>Add a Post</h3>
+        <form id="postForm">
+          <input type="text" id="postTitle" placeholder="Title" required>
+          <br>
+          <textarea id="postBody" placeholder="Body" rows="4" required></textarea>
+          <br>
+          <button type="submit">Submit</button>
+        </form>
+        <div id="postSuccessMessage"></div>
+      </div>
+    <!--Show Comments-->
+    <div id="commentsSection" class="container">
+        <h3>Show Comments for a Post</h3>
+        <p>Enter Post ID:</p>
+        <input type="number" id="postIdInput" placeholder="Post ID">
+        <button id="loadComment">Load Comments</button>
+        <ul id="commentList"></ul>
+      </div>
+
+    <script src="JavaScriptFetch.js"></script>
+</body>
+</html>
